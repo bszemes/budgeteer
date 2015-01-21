@@ -1,5 +1,5 @@
 //database module with sequelize.js
-var Sequelize = require('sequelize');
+var Sequelize = require('C://Users//b//Desktop//personal//js//budgetsoftware//backend//node_modules//sequelize');
 var webserver = require ('./webserver.js');
 
 

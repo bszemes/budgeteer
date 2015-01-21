@@ -2,7 +2,6 @@
 
 var database = require('./database.js');
 var webserver = require ('./webserver.js');
-var ddb = require('./dummydbfunction.js');
 
 var port1 = 80
 var host = '127.0.0.1'

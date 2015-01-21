@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="UTF-8">
+<title>Budgeteer - personal expense tracking</title>
+
+<style>
+
+body { 
+	font-size: 100%;
+	font-family: Verdana, sans-serif;
+
+}
+
+h1 {font-size: 2em; font-family: Tahoma, sans-serif;}
+h2 {font-size: 1.5em; font-family: Tahoma, sans-serif;}
+h3 {font-size: 1.2em; font-family: Tahoma, sans-serif;}
+
+section {}
+article {}
+header {
+	margin-left: auto;
+    margin-right: auto;
+	text-align: left;
+	text-indent: 20%;
+	border: 1px solid gray;
+}
+footer {
+	clear: both;
+	margin-left: auto;
+    margin-right: auto;
+	border: 1px solid gray;
+}
+
+
+#left {
+	width:33%; border: 1px solid gray;
+	float: left;
+	margin-left: auto;
+	}
+
+
+#right {
+	width:66%; border: 1px solid gray;
+	float: right;
+	}
+
+table, td, tr, th {
+border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 0.85em;
+}
+
+td.number {
+	text-align: right;
+}
+
+#incometable {
+	width: 48%;
+	float: left;
+}
+
+#expensetable {
+	width: 48%;
+	float: right;
+}
+
+#detailedexpensetable {
+	
+}
+
+#funcnav {
+	clear: both;
+}
+
+#expenseoverview {
+	border: 1px solid gray;
+	}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+<h1>Budgeteer</h1>
+</header>
+
+<section id="left">
+<h2>Monthly balance - at a quick glance</h2>
+
+<div id="Income">
+</div>
+
+<div id="Expenses">
+</div>
+
+<nav id="funcnav">
+<h3>Functions</h3>
+</nav>
+</section>
+
+<section id="right">
+
+<article id="intro">
+<h2>Welcome</h2>
+
+<p>You are now watching the personal expense management webapp, Budgeteer. Usage: enter expenses, set budgets and register incomes. You will get the monthly running balance at a glance, and have the ability to dig deeeper.</p>
+
+</article>
+
+<article id="expenseoverview">
+<h2> Detailed expense overview</h2>
+
+<div id="detailedexpense"></div>
+
+</article>
+
+</section>
+
+<footer>
+<p>By: Balazs Szemes</p>
+<p>For more info: <a href="http://:github">
+  See how it works</p>
+</footer>
+<script src="workspace.js"></script>
+</body>
