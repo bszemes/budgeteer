@@ -61,13 +61,40 @@ for (i=0, n=0; i<expenseArray.length; i++, n++) {
 	
 var totalBudgets=0;	
 
+var d = new Date();
+var month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
+var currentMonth = month[d.getMonth()]; 
+
 var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
 for (i=0; i<expenseByCategoryArray.length; i++) {
  expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' /*+ expenseByCategoryArray[i].description*/ + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>'; }
 expenseTable += '<tr class="finalrow"><td>Totals</td><td class = "number">' +totalBudgets + '</td><td class="number">' + totalExpenses + '</td></tr></table>';
 
 document.getElementById("Expenses").innerHTML = expenseTable;
-	
-
 
 document.getElementById("detailedexpense").innerHTML = detailedExpenseTable;
+
+var balance = totalIncome+totalExpenses;
+
+var balanceTable = '<table id="balancetable"><tr><th>Month</th><th>Income total</th><th>Budgeted Expenses</th><th>Expenses total</th><th>Balance<th></tr>'
+					+ '<tr><td>' + currentMonth
+					+ '</td><td>' + totalIncome
+					+ '</td><td>' + totalBudgets
+					+ '</td><td>' + totalExpenses
+					+ '</td><td>' + balance
+					+ '</tr>'
+
+
+document.getElementById("Balance").innerHTML = balanceTable;

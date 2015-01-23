@@ -73,6 +73,8 @@ border: 1px solid gray;
 padding: 2px;;
  }
 
+
+ 
 td.number {
 	text-align: right;
 	}
@@ -88,10 +90,18 @@ font-weight: bold;
 }
 
 #expensetable {
-	width: 49%;
+	width: 50%;
 	float: right;
 	 font-size: 0.85em;
 }
+
+
+#balancetable {
+	clear:both;
+	display: inline-block;
+	margin-top: 5px;
+		}
+
 
 #detailedexpensetable {
  margin-left: auto;
@@ -162,10 +172,10 @@ div#submitexpense {
  border: 1px solid red;
  z-index: 200;
  font-size: 80%;
- background: #e1c4b2;
  padding: 2px;
  overflow: hidden;
  transition: height 0.5s;
+ transition: background 0.2s;
  border-radius: 5px;
  }
  
@@ -178,15 +188,16 @@ div#submitexpense {
  border: 1px solid red;
  z-index: 200;
  font-size: 80%;
- background: #e1c4b2;
- padding: 2px;
+  padding: 2px;
  overflow: hidden;
   transition: height 0.5s;
+  transition: background 0.2s;
   border-radius: 5px;
  }
  
  div#submitexpense:hover,  
  div#submitincome:hover {
+  background: #e1c4b2;
  height: 180px;}
 
 </style>
@@ -222,13 +233,17 @@ div#submitexpense {
 </div>
 
 </div>
-
+<article id="balance">
 <div id="Income">
 </div>
 
 <div id="Expenses">
 </div>
 
+<div id="Balance">
+</div>
+
+</article>
 <nav id="funcnav">
 <h3>Functions</h3>
 
