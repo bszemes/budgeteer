@@ -6,12 +6,14 @@
 
 <style>
 
-html {font-size: 100%}
+html {font-size: 100%
+			}
 
 
 body { 
 	font-size: 80%;
 	font-family: Verdana, sans-serif;
+	width: 970px;
 
 }
 
@@ -43,7 +45,8 @@ footer {
 }
 
 #left {
-	width:33%; border: 1px solid gray;
+	width: 420px;
+	border: 1px solid gray;
 	float: left;
 	margin-left: auto;
 	 border-collapse: collapse;
@@ -53,7 +56,8 @@ footer {
 
 
 #right {
-	width:65%; border: 1px solid gray;
+	width: 530px; 
+	border: 1px solid gray;
 	float: left;
 	 border-collapse: collapse;
 	  display: table-cell;
@@ -116,7 +120,74 @@ ul {
 	
 #buttonbar {
 	text-align: center;
+	display: inline-block;
+	heigth: 50px;
 	}	
+	
+a.popout { border : 1px outset #8c5736;
+	padding: 3px;
+	background: #ca9777;
+	border-radius: 5px;
+	box-shadow: 3px 3px 1px #888888;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+	margin-top: 2px;
+	display: block;
+	width: 120px;
+	text-align: center;
+	 z-index: 200;
+}
+
+a.popout:hover {
+	cursor: pointer;
+} 
+
+a.popout:active {
+	cursor: pointer;
+	border : 1px inset #9d7802;
+	background: #643111;
+} 
+
+b { text-align: center;
+padding-left: 3px;
+}
+
+div#submitexpense {
+ position: absolute;
+ left: 60px;
+ top: 130px;
+ width: 150px;
+ height: 25px;
+ border: 1px solid red;
+ z-index: 200;
+ font-size: 80%;
+ background: #e1c4b2;
+ padding: 2px;
+ overflow: hidden;
+ transition: height 0.5s;
+ border-radius: 5px;
+ }
+ 
+ div#submitincome {
+ position: absolute;
+ left: 220px;
+ top: 130px;
+ width: 150px;
+ height: 25px;
+ border: 1px solid red;
+ z-index: 200;
+ font-size: 80%;
+ background: #e1c4b2;
+ padding: 2px;
+ overflow: hidden;
+  transition: height 0.5s;
+  border-radius: 5px;
+ }
+ 
+ div#submitexpense:hover,  
+ div#submitincome:hover {
+ height: 180px;}
 
 </style>
 
@@ -133,9 +204,24 @@ ul {
 
 <section id="left">
 <h2>Monthly balance - at a quick glance</h2>
-<p id=buttonbar> <button type="button">Add Expense Item</button>
-<button type="button">Add Income Item</button>
-</p>
+<div id=buttonbar>
+<br> <br>
+<div id="submitexpense">
+<a class="popout">Add Expense Item </a>
+<b >Expense description: <input type="text" id=expdesc name="expdesc"> </b>
+<b >Expense amount: <input type="text" id=expam name="expamo"> </b>
+<b >Expense category: <input type="text" id=expcat name="category"> </b>
+<b >Expense date: <input type="date" id=expdate name="expdate"> </b>
+
+</div>
+<div id="submitincome">
+<a class="popout">Add Income Item</a>
+<b >Income description: <input type="text" id=incdesc name="incdesc"> </b>
+<b >Income amount: <input type="text" id=incam name="incam"> </b>
+<b >Income date: <input type="date" id=incdate name="incdate"> </b>
+</div>
+
+</div>
 
 <div id="Income">
 </div>
