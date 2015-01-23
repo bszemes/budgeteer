@@ -34,48 +34,57 @@ footer {
 	margin-left: auto;
     margin-right: auto;
 	border: 1px solid gray;
-		 border-collapse: collapse;
+	border-collapse: collapse;
+	padding: 5px;
 
 }
 
+#center{ background-color: #555;
+}
 
 #left {
 	width:33%; border: 1px solid gray;
 	float: left;
 	margin-left: auto;
 	 border-collapse: collapse;
-	
-
-	}
+	padding: 4px;
+	background-color: #eee;
+		}
 
 
 #right {
-	width:66%; border: 1px solid gray;
-	float: right;
+	width:65%; border: 1px solid gray;
+	float: left;
 	 border-collapse: collapse;
 	  display: table-cell;
-
-	}
+	padding: 4px;
+	background-color: #ddd;
+		}
 
 table, td, tr, th {
 border: 1px solid gray;
  border-collapse: collapse;
  text-align: center;
  max-height: auto;
+padding: 2px;;
  }
 
 td.number {
 	text-align: right;
-}
+	}
 
+tr.finalrow {
+font-weight: bold; 
+}	
+	
 #incometable {
-	width: 48%;
+	width: 50%;
 	float: left;
 	 font-size: 0.85em;
 }
 
 #expensetable {
-	width: 48%;
+	width: 49%;
 	float: right;
 	 font-size: 0.85em;
 }
@@ -98,6 +107,17 @@ td.number {
 
 	}
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	text-indent: 20px;
+}	
+	
+#buttonbar {
+	text-align: center;
+	}	
+
 </style>
 
 </head>
@@ -109,9 +129,11 @@ td.number {
 <h1>Budgeteer</h1>
 </header>
 
+<section id="center">
+
 <section id="left">
 <h2>Monthly balance - at a quick glance</h2>
-<p> <button type="button">Add Expense Item</button>
+<p id=buttonbar> <button type="button">Add Expense Item</button>
 <button type="button">Add Income Item</button>
 </p>
 
@@ -123,6 +145,13 @@ td.number {
 
 <nav id="funcnav">
 <h3>Functions</h3>
+
+<ul>
+<li>Set Monthly Budget</li>
+<li>View Yearly Stats</li>
+<li>Edit Existing Items</li>
+</ul>
+
 </nav>
 </section>
 
@@ -142,6 +171,7 @@ td.number {
 
 </article>
 
+</section>
 </section>
 
 <footer>

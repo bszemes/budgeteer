@@ -2,11 +2,13 @@
 //create a table from an Income JSON
 var testJson = '[{"id":1,"description":"bevét","value":"25468","date":"2013-03-22T00:00:00.000Z"}]';
 var incomeArray = JSON.parse(testJson);
+var totalIncome = 0;
 
 var incomeTable = '<table id="incometable">' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
 for (i=0; i<incomeArray.length; i++) {
- incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; }
-incomeTable += '</table>';
+ incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; 
+ totalIncome += Number(incomeArray[i].value);}
+incomeTable += '<tr class="finalrow"><td colspan="2">Total Income</td><td class="number">' + totalIncome + '</td></tr></table>';
 
 document.getElementById("Income").innerHTML = incomeTable;
 
@@ -23,7 +25,7 @@ function compare(a,b) {
 }
 
 expenseArray.sort(compare);
-
+var totalExpenses =0
 var detailedExpenseTable= '<table id="detailedexpensetable">' + '<tr><th>Expense Category</th>' 
 																+ '<th>Expense description</th>' 
 																+ '<th>Expense Date</th>' 
@@ -33,10 +35,10 @@ for (i=0; i<expenseArray.length; i++) {
 								+ '<td>' + expenseArray[i].description + '</td>'
 								+ '<td>'+ expenseArray[i].date.substr(0, 10) +'</td>'
 								+ '<td class="number">' + expenseArray[i].value + '</td></tr>';
-									}
+		totalExpenses += Number(expenseArray[i].value);							}
 
  
- detailedExpenseTable += '</table>';
+ detailedExpenseTable += '<tr class="finalrow"><td colspan="3">Total Expenses</td><td class="number">' + totalExpenses + '</td></table>';
 
 
 
@@ -56,10 +58,13 @@ for (i=0, n=0; i<expenseArray.length; i++, n++) {
 		}
 	}
 
+	
+var totalBudgets=0;	
+
 var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
 for (i=0; i<expenseByCategoryArray.length; i++) {
  expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' /*+ expenseByCategoryArray[i].description*/ + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>'; }
-expenseTable += '</table>';
+expenseTable += '<tr class="finalrow"><td>Totals</td><td class = "number">' +totalBudgets + '</td><td class="number">' + totalExpenses + '</td></tr></table>';
 
 document.getElementById("Expenses").innerHTML = expenseTable;
 	
