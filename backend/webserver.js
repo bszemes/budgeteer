@@ -1,15 +1,16 @@
 var http = require('http') 
 var url = require('url')
 var fs = require('fs')
-var database = require('./database.js') 
+var database = require('./database.js')
+var static = require('node-static');
 
 
 exports.startWebserver = function (port1, host) {
 
 
  
+var file = new static.Server('.//..//web//', { cache: 1 });
 
-var file = 'c://Users//b//Desktop//personal//js//budgetsoftware//budgeteer//web//index.html'
 
 var data = {}
 var postHTML = 
@@ -23,7 +24,15 @@ var postHTML =
   server = http.createServer( function (req, res) {
 	
 	if (req.method != 'POST') {
-	fs.createReadStream(file).pipe(res)
+	/*fs.createReadStream(file).pipe(res)*/
+	
+    req.addListener('end', function () {
+        //
+        // Serve files!
+        //
+        file.serve(req, res);
+    }).resume();
+	
 	}
 	else if (req.method == 'POST' && url.parse(req.url).pathname == '/api/createexpense') {
 	 var body ="";

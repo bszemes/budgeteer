@@ -1,214 +1,105 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
+<html>
 <head>
+<meta charset="UTF-8">
+<title>Budgeteer - personal expense tracking</title>
+
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="table.css">
 
 </head>
-
 <body>
- <div>	
-		<p >Expense description: <input type="text" id=expdesc name="expdesc"><br> </p>
-		<p >Expense amount: <input type="text" id=expam name="expamo"><br> </p>
-		<p >Expense category: <input type="text" id=expcat name="category"><br> </p>
-		<p >Expense date: <input type="date" id=expdate name="expdate"><br> </p>
-	
-<input type="button" onclick="newExpenseSubmit()" value="Submit">	
 
-<p id=demo> placeholder </p>
-<p id=demo2> placeholder </p>
+<header>
+<h1>Budgeteer</h1>
+</header>
+
+<section id="center">
+
+<section id="left">
+<h2>Monthly balance - at a quick glance</h2>
+<div id=buttonbar>
+<div id="submitexpense">
+<a class="popout" onclick="newExpenseSubmit()" >Add Expense Item </a>
+<b >Expense description: <input type="text" id=expdesc name="expdesc"> </b>
+<b >Expense amount: <input type="text" id=expam name="expamo"> </b>
+<b >Expense category: <input type="text" id=expcat name="category"> </b>
+<b >Expense date: <input type="date" id=expdate name="expdate"> </b>
+
+</div>
+<div id="submitincome">
+<a class="popout" onclick="newIncomeSubmit()" >Add Income Item</a>
+<b >Income description: <input type="text" id=incdesc name="incdesc"> </b>
+<b >Income amount: <input type="text" id=incam name="incam"> </b>
+<b >Income date: <input type="date" id=incdate name="incdate"> </b>
 </div>
 
-<div>
+</div>
+<article id="balance">
+<div id="Income">
+</div>
 
-		<p >Income description: <input type="text" id=incdesc name="incdesc"><br> </p>
-		<p >Income amount: <input type="text" id=incam name="incam"><br> </p>
-		<p >Income date: <input type="date" id=incdate name="incdate"><br> </p>
-	
-<input type="button" onclick="newIncomeSubmit()" value="Submit">	
+<div id="Expenses">
+</div>
 
-<p id=demo3> placeholder </p>
-<p id=demo4> placeholder </p>
+<div id="Balance">
+</div>
 
-<div/>
+</article>
+<nav id="funcnav">
+<h3>Functions</h3>
 
+<ul>
+<li>Set Monthly Budget</li>
+<li>View Yearly Stats</li>
+<li>Edit Existing Items</li>
+</ul>
 
-<div>
+</nav>
+</section>
 
-		<p >Category name: <input type="text" id=category name="incdesc"><br> </p>
-		
-	
-<input type="button" onclick="newCategorySubmit()" value="Submit">	
+<section id="right">
 
-<p id=demo5> placeholder </p>
-<p id=demo6> placeholder </p>
+<article id="intro">
+<h2>Welcome</h2>
 
-<div/>
+<p>You are now looking at the personal expense management webapp, Budgeteer. Usage: enter expenses, set budgets and register incomes. You will get the monthly running balance at a glance, and have the ability to dig deeeper.</p>
 
-<div>
+</article>
 
-		<p >Select Budget category: <input type="text" id=budcat name="incdesc"><br> </p>
-		<p >Set new Budget value: <input type="text" id=budvalue name="incdesc"><br> </p>
-		<p >Set new Budget year: <input type="text" id=budyear name="incdesc"><br> </p>		
-		<p >Set new Budget month:  <select id=budmonth>
-									<option value="0">January</option>
-									<option value="1">February</option>
-									<option value="2">March</option>
-									<option value="3">April</option>
-									<option value="4">May</option>
-									<option value="5">June</option>
-									<option value="6">July</option>
-									<option value="7">August</option>
-									<option value="8">September</option>
-									<option value="9">October</option>
-									<option value="10">November</option>
-									<option value="11">December</option>
-									</select> <br> </p>
-	
-<input type="button" onclick="newBISubmit()" value="Submit">	
+<article id="expenseoverview">
+<h2> Detailed expense overview</h2>
 
-<p id=demo7> placeholder </p>
-<p id=demo8> placeholder </p>
+<div id="detailedexpense"></div>
 
-<div/>
+</article>
 
+</section>
+</section>
 
-<div id=monthlyitemquery>
-		<h2> Query Items for a given month</h2>
-		<p >Enter year: <input type="text" id=mqitemyear name="incdesc"><br> </p>		
-		<p >Select month to query:  <select id=mqitemmonth>
-									<option value="0">January</option>
-									<option value="1">February</option>
-									<option value="2">March</option>
-									<option value="3">April</option>
-									<option value="4">May</option>
-									<option value="5">June</option>
-									<option value="6">July</option>
-									<option value="7">August</option>
-									<option value="8">September</option>
-									<option value="9">October</option>
-									<option value="10">November</option>
-									<option value="11">December</option>
-									</select> <br> </p>
-		<p >Select Item type to query:  <select id=itemtype>
-									<option value="exp">Expense</option>
-									<option value="inc">Income</option>
-									<option value="bi">Budgets</option>							
-									</select> <br> </p>
-									
-<input type="button" onclick="newItemMQSubmit()" value="Submit">	
+<footer>
+<p>By: Balazs Szemes</p>
+<p>For more info: <a href="https://github.com/bszemes/budgeteer">
+  See how it works</p>
+</footer>
+<div id="debug1">
+</div>
+<div id="debug2">
+</div>
+<div id="debug3">
+</div>
+<div id="expdebug1">
+</div>
+<div id="expdebug2">
+</div>
+<div id="incdebug1">
+</div>
+<div id="incdebug2">
+</div>
 
-<p id=demo9> placeholder </p>
-<p id=demo10> placeholder </p>
-
-<div/>
-
-
-<script>
-
-//function for submitting expense	
-function newExpenseSubmit() {
-	  var newExpense = { description: document.getElementById("expdesc").value,
-						 value: document.getElementById("expam").value,
-						 category: document.getElementById("expcat").value,
-						 date: document.getElementById("expdate").value
-						};
-
-var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/createexpense";
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("demo2").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo").innerHTML = JSON.stringify(newExpense)
-xmlhttp.send(JSON.stringify(newExpense));
-	}
-	
-//function for submitting income	
-function newIncomeSubmit() {
-	  var newIncome = { description: document.getElementById("incdesc").value,
-						value: document.getElementById("incam").value,
-						date: document.getElementById("incdate").value
-						};
-
-var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/createincome";
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("demo4").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo3").innerHTML = JSON.stringify(newIncome)
-xmlhttp.send(JSON.stringify(newIncome));
-	}	
-	
-	//function for submitting a new Category	
-function newCategorySubmit() {
-	  var newCategory = { category: document.getElementById("category").value};
-
-var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/createcategory";
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("demo6").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo5").innerHTML = JSON.stringify(newCategory)
-xmlhttp.send(JSON.stringify(newCategory));
-	}	
-	
-	//function for submitting a new BudgetItem	
-function newBISubmit() {
-	  var newBI = { value: document.getElementById("budvalue").value,
-					category: document.getElementById("budcat").value,
-					startdate: Date.prototype.setFullYear(document.getElementById("budyear").value, document.getElementById("budmonth").value, 1),
-					enddate: Date.prototype.setFullYear(document.getElementById("budyear").value, Number(document.getElementById("budmonth").value)+1, 0)
-					}
-var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/addbudget";
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("demo8").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo7").innerHTML = JSON.stringify(newBI)
-xmlhttp.send(JSON.stringify(newBI));
-	}	
-
-	//function for submitting a new Monthly Expense Query and displaying results	
-function newItemMQSubmit() {
-		
-
-	  var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYear(document.getElementById("mqitemyear").value, document.getElementById("mqitemmonth").value, 1)),
-						enddate: Date.prototype.toUTCString(Date.prototype.setFullYear(document.getElementById("mqitemyear").value, Number(document.getElementById("mqitemmonth").value)+1, 0)) 
-					}
-					
-	var xmlhttp = new XMLHttpRequest();
-	var url
-	if ( document.getElementById("itemtype").value == "exp") {var url = "http://127.0.0.1/api/monthlyitemquery?item=expense"}
-	else if ( document.getElementById("itemtype").value == "inc") {var url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
-	else if ( document.getElementById("itemtype").value == "bi") {var url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
-
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        console.log(xmlhttp.responseText);
-		document.getElementById("demo10").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo9").innerHTML = (JSON.stringify(newExpMQ));
-xmlhttp.send(JSON.stringify(newExpMQ));
-	}	
-	
-</script>
+<script src="indexload.js"></script>
+<script src="ajaxlogic.js"></script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+table, td, tr, th {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 2px;;
+	}
+ 
+td.number {
+	text-align: right;
+	}
+
+tr.finalrow {
+	font-weight: bold; 
+	}	
+	
+#incometable {
+	width: 50%;
+	float: left;
+	}
+
+#expensetable {
+	width: 50%;
+	float: right;
+	}
+
+
+#balancetable {
+	clear:both;
+	display: inline-block;
+	margin-top: 5px;
+	}
+
+
+#detailedexpensetable {
+ margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+}
