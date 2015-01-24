@@ -19,9 +19,9 @@ month[10] = "November";
 month[11] = "December";
 var currentMonth = month[d.getMonth()]; 
 var incomeArray = [];
-var totalIncome = 0;
+var totalIncome
 var balance =0;
-var totalExpenses =0;
+var totalExpenses
 var expenseByCategoryArray = [];
 var totalBudgets=0;	
 
@@ -34,8 +34,9 @@ function compare(a,b) {
 }
 
 var generateIncomeTable = function (incomeJSON) {
+	totalIncome = 0;
 	incomeArray = JSON.parse(incomeJSON);
-
+	
 	var incomeTable = '<table id="incometable">' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
 		for (i=0; i<incomeArray.length; i++) {
 			incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; 
@@ -43,10 +44,12 @@ var generateIncomeTable = function (incomeJSON) {
 			incomeTable += '<tr class="finalrow"><td colspan="2">Total Income</td><td class="number">' + totalIncome + '</td></tr></table>';
 
 	document.getElementById("Income").innerHTML = incomeTable;
+	updateBalance();
 	};
 
 
 var generateExpenseTables = function (expenseJSON) {
+	totalExpenses = 0;
 	var expenseArray = JSON.parse(expenseJSON);
 	
 
@@ -86,21 +89,20 @@ var generateExpenseTables = function (expenseJSON) {
 			document.getElementById("Expenses").innerHTML = expenseTable;
 
 	document.getElementById("detailedexpense").innerHTML = detailedExpenseTable;
+	updateBalance(); 
 }
 		
 		
 
 //display income table
 var currentMonthlyIncLoad = function () { 
-	currentMonthlyDataLoad("inc",generateIncomeTable);
-	updateBalance();
-}
+	currentMonthlyDataLoad("inc", generateIncomeTable);
+	}
 
 
 //display expense table
 var currentMonthlyExpLoad = function() {
  currentMonthlyDataLoad("exp", generateExpenseTables);
-	updateBalance(); 
 	}
 
 var updateBalance = function() {
@@ -121,4 +123,14 @@ document.getElementById("Balance").innerHTML = balanceTable;
 
 window.addEventListener("load", currentMonthlyIncLoad);
 window.addEventListener("load", currentMonthlyExpLoad);
+
+document.getElementById("expenseform").addEventListener("submit", function(e){
+e.preventDefault();
+newExpenseSubmit();
+})
+
+document.getElementById("incomeform").addEventListener("submit", function(e){
+e.preventDefault();
+newIncomeSubmit();
+})
 

@@ -22,18 +22,21 @@
 <h2>Monthly balance - at a quick glance</h2>
 <div id=buttonbar>
 <div id="submitexpense">
-<a class="popout" onclick="newExpenseSubmit()" >Add Expense Item </a>
-<b >Expense description: <input type="text" id=expdesc name="expdesc"> </b>
-<b >Expense amount: <input type="text" id=expam name="expamo"> </b>
-<b >Expense category: <input type="text" id=expcat name="category"> </b>
-<b >Expense date: <input type="date" id=expdate name="expdate"> </b>
-
+<form id="expenseform">
+<input class="button" type="submit" value="Add Expense Item">
+Expense description: <input type="text" id=expdesc name="expdesc" required> 
+Expense amount: <input type="number" id=expam name="expamo" required> 
+Expense category: <input type="text" id=expcat name="category" required>
+Exp. date (YYYY-MM-DD): <input type="date" id=expdate name="expdate" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"> 
+</form>
 </div>
 <div id="submitincome">
-<a class="popout" onclick="newIncomeSubmit()" >Add Income Item</a>
-<b >Income description: <input type="text" id=incdesc name="incdesc"> </b>
-<b >Income amount: <input type="text" id=incam name="incam"> </b>
-<b >Income date: <input type="date" id=incdate name="incdate"> </b>
+<form id="incomeform">
+<input class="button" type="submit" value="Add Income Item">
+Income description: <input type="text" id=incdesc name="incdesc" required> </b>
+Income amount: <input type="number" id=incam name="incam" required> </b>
+Inc. date  (YYYY-MM-DD): <input type="date" id=incdate name="incdate" required pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"> </b>
+</form>
 </div>
 
 </div>

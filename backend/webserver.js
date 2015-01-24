@@ -9,7 +9,7 @@ exports.startWebserver = function (port1, host) {
 
 
  
-var file = new static.Server('.//..//web//', { cache: 1 });
+var file = new static.Server('.//..//web//', { cache: 0 });
 
 
 var data = {}
@@ -24,44 +24,40 @@ var postHTML =
   server = http.createServer( function (req, res) {
 	
 	if (req.method != 'POST') {
-	/*fs.createReadStream(file).pipe(res)*/
-	
-    req.addListener('end', function () {
-        //
-        // Serve files!
-        //
-        file.serve(req, res);
-    }).resume();
-	
-	}
+	    req.addListener('end', function () {
+			file.serve(req, res);
+			}).resume();
+		}
+			
 	else if (req.method == 'POST' && url.parse(req.url).pathname == '/api/createexpense') {
-	 var body ="";
-	req.on('data', function (chunk) {
-    body += chunk;
-  });
+		var body ="";
+		req.on('data', function (chunk) {
+			body += chunk;
+			});
 	
-	req.on('end', function () {
-	  console.log(JSON.parse(body));
-	  database.seqexpstore(JSON.parse(body));
-	  res.writeHead(200);
-	   res.end(postHTML);
-	    }) 
-	}
+		req.on('end', function () {
+			console.log(JSON.parse(body));
+			database.seqexpstore(JSON.parse(body), function () {
+				res.writeHead(200);
+				res.end(postHTML);
+				})
+			})
+		}
 	
-	else if 
-	(req.method == 'POST' && url.parse(req.url).pathname == '/api/createincome') {
-	 var body ="";
-	req.on('data', function (chunk) {
-    body += chunk;
-  });
+	else if (req.method == 'POST' && url.parse(req.url).pathname == '/api/createincome') {
+		var body ="";
+		req.on('data', function (chunk) {
+			body += chunk;
+		});
 	
-	req.on('end', function () {
-	  console.log(JSON.parse(body));
-	  database.seqincstore(JSON.parse(body));
-	  res.writeHead(200);
-	   res.end(postHTML);
-	    }) 
-	}
+		req.on('end', function () {
+			console.log(JSON.parse(body));
+			database.seqincstore(JSON.parse(body), function () {
+				res.writeHead(200);
+				res.end(postHTML);
+				}) 
+			})
+		}
 	
 	else if 
 	(req.method == 'POST' && url.parse(req.url).pathname == '/api/createcategory') {

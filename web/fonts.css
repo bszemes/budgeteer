@@ -16,3 +16,7 @@ h3 {font-size: 1.2em; font-family: Tahoma, sans-serif;}
 #expenseoverview { font-size: 100%;}
 
 div#submitexpense,  div#submitincome {  font-size: 80%; }
+
+input.button { font-size:110%;
+	font-family: Verdana, sans-serif;
+	}

@@ -82,7 +82,7 @@ sequelize
   
   
 // new expense storing  
-exports.seqexpstore = function(newexp) {
+exports.seqexpstore = function(newexp, callback) {
 
 Expense
   .create(newexp)
@@ -96,11 +96,12 @@ Expense
 	        newexp.setCategory(category).complete(function(err) { 
       newexp.getCategory().complete(function(err, target) {
         console.log(target)
+		callback();
 				})
     })
  })
   })  
-
+ 
 }
 
 // new category storing
@@ -119,7 +120,7 @@ Category
 }
 
 //new income item storing
-exports.seqincstore = function(newinc) {
+exports.seqincstore = function(newinc, callback) {
 
 Income
   .create(newinc)
@@ -128,6 +129,7 @@ Income
       console.log('The instance has not been saved:', err)
     } else {
       console.log('We have a persisted instance now')
+	  callback();
 	  }
    
   })

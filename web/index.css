@@ -42,10 +42,11 @@ ul {
 #buttonbar {
 	text-align: center;
 	display: inline-block;
-	height: 25px;
+	height: 30px;
 	}	
 	
-a.popout { border : 1px outset #8c5736;
+input.button { border : 1px outset #8c5736;
+	height: 22px;
 	padding: 3px;
 	background: #ca9777;
 	border-radius: 5px;
@@ -56,15 +57,16 @@ a.popout { border : 1px outset #8c5736;
 	margin-top: 2px;
 	display: block;
 	width: 120px;
+	
 	text-align: center;
 	 z-index: 200;
 }
 
-a.popout:hover {
+input.button:hover {
 	cursor: pointer;
 } 
 
-a.popout:active {
+input.button:active {
 	cursor: pointer;
 	border : 1px inset #9d7802;
 	background: #643111;
@@ -88,16 +90,21 @@ div#submitexpense, div#submitincome {
 	}
 
 div#submitexpense {
-	left: 60px;
+	left: 80px;
 	top: 130px;
 	}
  
  div#submitincome {
-	left: 220px;
+	left: 250px;
 	top: 130px;
 	}
  
- div#submitexpense:hover, div#submitincome:hover {
+ div#submitexpense:hover, div#submitincome:hover  {
 	background: #e1c4b2;
 	height: 180px;
 	}
+
+	
+input[type="text"]:invalid {
+	color: red;
+}
