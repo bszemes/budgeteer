@@ -2,12 +2,10 @@
 
 var database = require('./database.js');
 var webserver = require ('./webserver.js');
-
-var port1 = 80
-var host = '127.0.0.1'
+var config = require ('./config.json');
 
 
 database.seqDbConn();
 database.seqResetDb();
-var myWebServer = webserver.startWebserver(port1, host);
+var myWebServer = webserver.startWebserver(config.port1, config.host);
 

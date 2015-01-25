@@ -33,6 +33,12 @@ function compare(a,b) {
   return 0;
 }
 
+if (Number(d.getMonth()) < 9) {var monthformatted = "0" + (d.getMonth()+1).toString() } else monthformatted = (d.getMonth()+1).toString();
+var today = "" + (d.getFullYear()).toString() + "-" + monthformatted + "-" + (d.getDate()).toString()
+console.log(today);
+document.getElementById("expdate").value = today;
+document.getElementById("incdate").value = today;
+
 var generateIncomeTable = function (incomeJSON) {
 	totalIncome = 0;
 	incomeArray = JSON.parse(incomeJSON);
@@ -51,9 +57,8 @@ var generateIncomeTable = function (incomeJSON) {
 var generateExpenseTables = function (expenseJSON) {
 	totalExpenses = 0;
 	var expenseArray = JSON.parse(expenseJSON);
-	
-
 	expenseArray.sort(compare);
+	//create the detailed expenses table
 	var detailedExpenseTable= '<table id="detailedexpensetable">' + '<tr><th>Expense Category</th>' 
 																	+ '<th>Expense description</th>' 
 																	+ '<th>Expense Date</th>' 
@@ -62,14 +67,12 @@ var generateExpenseTables = function (expenseJSON) {
 			detailedExpenseTable += '<tr> <td>' + expenseArray[i].category + '</td>'
 										+ '<td>' + expenseArray[i].description + '</td>'
 										+ '<td>'+ expenseArray[i].date.substr(0, 10) +'</td>'
-										+ '<td class="number">' + expenseArray[i].value + '</td></tr>';
-				totalExpenses += Number(expenseArray[i].value);							}
-
- 
+						+ '<td class="number">' + expenseArray[i].value + '</td></tr>';
+			totalExpenses += Number(expenseArray[i].value);							
+			}
 	detailedExpenseTable += '<tr class="finalrow"><td colspan="3">Total Expenses</td><td class="number">' + totalExpenses + '</td></table>';
-
-	i=0;
-
+	//create the expenses by category table - first sum the values in the same category, then create a table to display
+	//TODO: add budgets
 		for (i=0, n=0; i<expenseArray.length; i++, n++) {
 			expenseByCategoryArray[n] = expenseArray[i];
 			expenseByCategoryArray[n].value = Number(expenseByCategoryArray[n].value);
@@ -80,49 +83,61 @@ var generateExpenseTables = function (expenseJSON) {
 			if (expenseArray[i+1] == undefined)  break;
 			}
 		}
-		var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
-			for (i=0; i<expenseByCategoryArray.length; i++) {
-				expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' /*+ expenseByCategoryArray[i].description*/ + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>';
-				};
-			expenseTable += '<tr class="finalrow"><td>Totals</td><td class = "number">' +totalBudgets + '</td><td class="number">' + totalExpenses + '</td></tr></table>';
+	var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
+		for (i=0; i<expenseByCategoryArray.length; i++) {
+			expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' /*+ expenseByCategoryArray[i].description*/ + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>';
+			}
+		expenseTable += '<tr class="finalrow"><td>Totals</td><td class = "number">' +totalBudgets + '</td><td class="number">' + totalExpenses + '</td></tr></table>';
 
-			document.getElementById("Expenses").innerHTML = expenseTable;
-
+	document.getElementById("Expenses").innerHTML = expenseTable;
 	document.getElementById("detailedexpense").innerHTML = detailedExpenseTable;
 	updateBalance(); 
 }
-		
-		
 
-//display income table
+var populateCategoryDatalist = function(categoryJSON) {
+	var categoryList =''
+	var categoryArray = JSON.parse(categoryJSON);
+	for (i=0; i<categoryArray.length; i++) {categoryList += '<option value=' + categoryArray[i].category + '>'}
+	document.getElementById("categories").innerHTML = categoryList;
+	console.log(categoryList);
+	console.log(document.getElementById("categories"));
+}
+	
+//get a list of incomes, then display income table
 var currentMonthlyIncLoad = function () { 
 	currentMonthlyDataLoad("inc", generateIncomeTable);
 	}
 
-
-//display expense table
+//get the list of expenses, then display expense table
 var currentMonthlyExpLoad = function() {
- currentMonthlyDataLoad("exp", generateExpenseTables);
+	currentMonthlyDataLoad("exp", generateExpenseTables);
 	}
-
+	
+//update balance values in the table
 var updateBalance = function() {
 
-var balance = totalIncome+totalExpenses;
+	var balance = totalIncome+totalExpenses;
 
-var balanceTable = '<table id="balancetable"><tr><th>Month</th><th>Income total</th><th>Budgeted Expenses</th><th>Expenses total</th><th>Balance<th></tr>'
-					+ '<tr><td>' + currentMonth
-					+ '</td><td>' + totalIncome
-					+ '</td><td>' + totalBudgets
-					+ '</td><td>' + totalExpenses
-					+ '</td><td>' + balance
-					+ '</tr>'
+	var balanceTable = '<table id="balancetable"><tr><th>Month</th><th>Income total</th><th>Budgeted Expenses</th><th>Expenses total</th><th>Balance<th></tr>'
+						+ '<tr><td>' + currentMonth
+						+ '</td><td>' + totalIncome
+						+ '</td><td>' + totalBudgets
+						+ '</td><td>' + totalExpenses
+						+ '</td><td>' + balance
+						+ '</tr>'
 
 
-document.getElementById("Balance").innerHTML = balanceTable;
-}
+	document.getElementById("Balance").innerHTML = balanceTable;
+	}
 
+//get a list of categories, then update the datalist
+var updateCategoryDatalist = function() {
+	getCategoryList(populateCategoryDatalist);
+	}	
+	
 window.addEventListener("load", currentMonthlyIncLoad);
 window.addEventListener("load", currentMonthlyExpLoad);
+window.addEventListener("load", updateCategoryDatalist);
 
 document.getElementById("expenseform").addEventListener("submit", function(e){
 e.preventDefault();
@@ -133,4 +148,5 @@ document.getElementById("incomeform").addEventListener("submit", function(e){
 e.preventDefault();
 newIncomeSubmit();
 })
+
 

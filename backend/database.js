@@ -1,13 +1,14 @@
 //database module with sequelize.js
 var Sequelize = require('C://Users//b//Desktop//personal//js//budgetsoftware//backend//node_modules//sequelize');
 var webserver = require ('./webserver.js');
+var config = require ('./config.json');
 
 
 // db connection
 exports.seqDbConn = function() {
-  sequelize = new Sequelize('playground2', 'postgres', 'alpakka', {
-      dialect: "postgres", // or 'sqlite', 'postgres', 'mariadb'
-      port:    5432, // or 5432 (for postgres)
+  sequelize = new Sequelize(config.dbname, config.dbuser, config.dbpwd, {
+      dialect: config.dialect,
+      port:    config.dbport,
     })
 		
 	sequelize
@@ -161,8 +162,7 @@ BudgetItem.create(newBudgetItem).complete(function(err, newbi) {
 
 
   Expense.findAll({where: {date: { between: [newExpMQ.startdate, newExpMQ.enddate]}}}).then(function(expres) { 
-  	  console.log(expres);
-	  callback(expres);
+  	  callback(expres);
   })
   }
   
@@ -172,8 +172,7 @@ BudgetItem.create(newBudgetItem).complete(function(err, newbi) {
 
 
   Income.findAll({where: {date: { between: [newIncMQ.startdate, newIncMQ.enddate]}}}).then(function(incres) { 
-  	  console.log(incres);
-	  callback(incres);
+  	  callback(incres);
   })
   }
 
@@ -187,7 +186,16 @@ BudgetItem.create(newBudgetItem).complete(function(err, newbi) {
 	  callback(bires);
   })
   }  
+  
+ // Retrieve categories from DB
+ 
+ exports.categoryQuery = function (callback) {
 
+  Category.findAll().then(function(catres) { 
+  	  callback(catres);
+  })
+  } 
+  
   //new Monthly Query data retrieval 
 /*
   exports.seqMQuery = function(newMQ) {

@@ -1,5 +1,7 @@
 //Contains the ajax logic for server calls
 
+//get a list of items for the current month
+
 var currentMonthlyDataLoad = function(itemType, callback) {
 
 var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth(), 1)),
@@ -24,6 +26,22 @@ document.getElementById("debug1").innerHTML = (JSON.stringify(newExpMQ));
 xmlhttp.send(JSON.stringify(newExpMQ));
 	}
 
+//getting a list of categories
+var getCategoryList = function(callback) {
+	var xmlhttp = new XMLHttpRequest();
+	var url = 'http://127.0.0.1/api/getcategories'
+	
+	xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			document.getElementById("debug2").innerHTML = xmlhttp.responseText;
+			callback(xmlhttp.responseText);
+			}
+		}
+		
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	}
+	
 //function for submitting expense	
 function newExpenseSubmit() {
 	  var newExpense = { description: document.getElementById("expdesc").value,
