@@ -2,7 +2,7 @@
 	}
 
 #left {
-	width: 420px;
+	width: 520px;
 	border: 1px solid gray;
 	float: left;
 	margin-left: auto;
@@ -13,7 +13,7 @@
 
 
 #right {
-	width: 530px; 
+	width: 430px; 
 	border: 1px solid gray;
 	float: left;
 	border-collapse: collapse;
@@ -21,6 +21,7 @@
 	padding: 4px;
 	background-color: #ddd;
 	}
+
 	
 #funcnav {
 	clear: both;

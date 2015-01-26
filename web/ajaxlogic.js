@@ -16,13 +16,12 @@ var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYea
 
 xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("debug2").innerHTML = xmlhttp.responseText;
+        document.getElementById("budebug2").innerHTML = xmlhttp.responseText;
 		callback(xmlhttp.responseText);
     }
 }
 xmlhttp.open("POST", url, true);
 xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("debug1").innerHTML = (JSON.stringify(newExpMQ));
 xmlhttp.send(JSON.stringify(newExpMQ));
 	}
 
@@ -33,7 +32,6 @@ var getCategoryList = function(callback) {
 	
 	xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			document.getElementById("debug2").innerHTML = xmlhttp.responseText;
 			callback(xmlhttp.responseText);
 			}
 		}
@@ -41,6 +39,7 @@ var getCategoryList = function(callback) {
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 	}
+
 	
 //function for submitting expense	
 function newExpenseSubmit() {

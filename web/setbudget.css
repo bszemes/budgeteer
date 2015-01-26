@@ -1,0 +1,68 @@
+#budgetbar {
+		height: 20px;
+		}
+		
+#funcnav {
+	width:200px;
+	float:left;
+	border: 1px solid red;
+}
+
+#budgetdisplay {
+	width: 766px;
+	float: left;
+	border: 1px solid red;
+}
+
+b {
+    display: block;
+    width: 120px;
+	float: left;
+	}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+} 
+
+#budgetdetails {
+		clear:both;
+		width: 766px;
+		height: 200px;
+		}
+
+#categorycolumn {
+	width: 280px;
+	margin-left: 100px;
+	margin-top: 10px;
+	float: left;
+	border: 1px solid red;
+}
+
+#budgetamountcolumn {
+		width: 200px;
+	margin-top: 10px;
+	float: left;
+	border: 1px solid red;
+}
+
+div.categorydiv, div.budgetdiv {
+		margin-top: 2px;
+		height: 20px;
+		text-align: center;
+		border-bottom: 1px dotted black;
+}
+
+div.budgetdiv:focus {
+		background-color: yellow;
+}
+
+#budgetsubmit {
+	width:12px;
+	float:left;
+	margin-left:10px;
+	margin-top: 10px;
+	border: 1px solid red;
+	height: 400px;
+}
