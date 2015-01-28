@@ -4,8 +4,8 @@
 
 var currentMonthlyDataLoad = function(itemType, callback) {
 
-var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth(), 1)),
-						enddate: Date.prototype.toUTCString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth()+1, 1)) 
+var newExpMQ = { startdate: Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth(), 1)),
+						enddate: Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth()+1, 1)) 
 					}
 	console.log(newExpMQ);
 	var xmlhttp = new XMLHttpRequest();
@@ -14,9 +14,9 @@ var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYea
 	else if ( itemType== "inc") {var url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
 	else if ( itemType == "bi") {var url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
 
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+xmlhttp.onreadystatechange = function () { 
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("budebug2").innerHTML = xmlhttp.responseText;
+        //document.getElementById("budebug2").innerHTML = xmlhttp.responseText;
 		callback(xmlhttp.responseText);
     }
 }
@@ -84,7 +84,21 @@ document.getElementById("incdebug1").innerHTML = JSON.stringify(newIncome)
 xmlhttp.send(JSON.stringify(newIncome));
 	}	
 	
+//function for submitting income	
+function newBudgetItemSubmit(budgetItem) {
 
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://127.0.0.1/api/createbudgetitem";
+	xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		console.log(xmlhttp.responseText);
+	    }
+}
+xmlhttp.open("POST", url, true);
+xmlhttp.setRequestHeader("Content-type", "application/json");
+xmlhttp.send(JSON.stringify(budgetItem));
+return;
+	}	
 
 /*function newItemMQSubmit() {
 		

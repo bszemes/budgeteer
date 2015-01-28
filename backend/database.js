@@ -105,6 +105,30 @@ Expense
  
 }
 
+//new BudgetItem item storing
+exports.seqBIStore = function(newBudgetItem) {
+
+BudgetItem
+	.create(newBudgetItem)
+	.complete(function(err, newbi) {
+    if (!!err) {
+      console.log('The instance has not been saved:', err)
+    } else {
+      console.log('We have a persisted instance now')
+	  }
+	  Category.findOrCreate({ where: {category: newbi.category }}).spread(function(category, created) {
+	        newbi.setCategory(category).complete(function(err) { 
+      newbi.getCategory().complete(function(err, target) {
+        console.log(target)
+				})
+    })
+ })
+  })
+  } ;
+
+
+
+
 // new category storing
 exports.seqCatStore = function(newcat) {
 
@@ -137,24 +161,7 @@ Income
 
 }
 
-//new BudgetItem item storing
-exports.seqBIStore = function(newBudgetItem) {
 
-BudgetItem.create(newBudgetItem).complete(function(err, newbi) {
-    if (!!err) {
-      console.log('The instance has not been saved:', err)
-    } else {
-      console.log('We have a persisted instance now')
-	  }
-	  Category.findOrCreate({ where: {category: newBudgetItem.category }}).spread(function(category, created) {
-	        newbi.setCategory(category).complete(function(err) { 
-      newbi.getCategory().complete(function(err, target) {
-        console.log(target)
-				})
-    })
- })
-  })
-  } ;
   
     //new Monthly Query for Expense data retrieval 
 

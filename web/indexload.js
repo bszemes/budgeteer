@@ -9,6 +9,7 @@ var balance =0;
 var totalExpenses
 var expenseByCategoryArray = [];
 var totalBudgets=0;	
+var budgetArray = [];
 
 function compare(a,b) {
   if (a.category < b.category)
@@ -17,6 +18,14 @@ function compare(a,b) {
     return 1;
   return 0;
 }
+
+var findBudgetItembyCategory = function(budgetArray, cat) {
+	for (g=0; g<budgetArray.length; g++) {
+		if (budgetArray[g].category == cat) {return budgetArray[g]}
+	}
+	return null
+}
+
 
 if (Number(d.getMonth()) < 9) {var monthformatted = "0" + (d.getMonth()+1).toString() } else monthformatted = (d.getMonth()+1).toString();
 var today = "" + (d.getFullYear()).toString() + "-" + monthformatted + "-" + (d.getDate()).toString()
@@ -68,9 +77,12 @@ var generateExpenseTables = function (expenseJSON) {
 			if (expenseArray[i+1] == undefined)  break;
 			}
 		}
+		
 	var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
 		for (i=0; i<expenseByCategoryArray.length; i++) {
-			expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' /*+ expenseByCategoryArray[i].description*/ + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>';
+			currentBudget = (findBudgetItembyCategory(budgetArray, expenseByCategoryArray[i].category) != null) ? findBudgetItembyCategory(budgetArray, expenseByCategoryArray[i].category).value : "0";
+			expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' + currentBudget + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>';
+			totalBudgets += Number(currentBudget);
 			}
 		expenseTable += '<tr class="finalrow"><td>Totals</td><td class = "number">' +totalBudgets + '</td><td class="number">' + totalExpenses + '</td></tr></table>';
 
@@ -80,6 +92,17 @@ var generateExpenseTables = function (expenseJSON) {
 	updateCategoryDatalist();
 }
 
+var currentMonthlyBILoad = function()	{
+	currentMonthlyDataLoad("bi", populateBudgetArray);
+	}
+
+var populateBudgetArray = function(budgetJSON) {
+	console.log(budgetJSON);
+	budgetArray=JSON.parse(budgetJSON);
+}
+
+
+	
 var populateCategoryDatalist = function(categoryJSON) {
 	var categoryList =''
 	var categoryArray = JSON.parse(categoryJSON);
@@ -121,6 +144,7 @@ var updateCategoryDatalist = function() {
 	getCategoryList(populateCategoryDatalist);
 	}	
 	
+window.addEventListener("load", currentMonthlyBILoad);	
 window.addEventListener("load", currentMonthlyIncLoad);
 window.addEventListener("load", currentMonthlyExpLoad);
 window.addEventListener("load", updateCategoryDatalist);

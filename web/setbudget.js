@@ -43,28 +43,35 @@ displayBudgetList();
 
 //get a list of BudgetItems, then display income table
 
-/* TODO
+
 
 var submitBudgetItems = function() {
+	
 	var i=1;
-	var startdate;
-	var enddate;
-	var id;
 	
-	while document.getElementById("budget"+i) != null {
-		if document.getElementById("budget"+i) != "" {
-			var BudgetItem {
-						value: 
-						category:
-						startdate:
-						enddate:
-							}
-			;
-				newBudgetItemSubmit
+	var startdate = Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth(), 1));
+	var enddate = Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth()+1, 1));
+	
+	while (document.getElementById("budget"+i) != null) {
+		console.log("tik"+i)
+		var tstStr = document.getElementById("budget"+i).innerHTML
+		console.log("tak"+i)
+		if ( tstStr.length > 0 ) {
+			console.log("tok")
+			var budgetItem = {
+						value: document.getElementById("budget"+i).innerHTML,
+						category: document.getElementById("category"+i).innerHTML,
+						startdate: startdate,
+						enddate: enddate}
+			newBudgetItemSubmit(budgetItem);
+			
+			console.log(i);
+	
 			}
+		i++;
 		}
-	
 }
-*/
+
+
 
 

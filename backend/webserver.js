@@ -91,8 +91,8 @@ var postHTML =
 	}
 	
 	else if 
-	(req.method == 'POST' && url.parse(req.url).pathname == '/api/addbudget') {
-	 var body ="";
+	(req.method == 'POST' && url.parse(req.url).pathname == '/api/createbudgetitem') {
+	  var body ="";
 	req.on('data', function (chunk) {
     body += chunk;
   });
