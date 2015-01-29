@@ -33,7 +33,7 @@ var displayBudgetList = function() {
 		}	
 		
 	var currentMonthlyBILoad = function () { 
-	currentMonthlyDataLoad("bi", displayBudgetValuesByCategory);
+	generalDataLoadFromGivenTF("bi", currentMonthStart, currentMonthEnd, displayBudgetValuesByCategory);
 	}
 
 }

@@ -11,7 +11,7 @@ h1 {font-size: 2em; font-family: Tahoma, sans-serif;}
 h2 {font-size: 1.5em; font-family: Tahoma, sans-serif;}
 h3 {font-size: 1.2em; font-family: Tahoma, sans-serif;}
 
-#incometable, #expensetable {font-size: 0.85em;}
+#incometable, #expensetable, #incomes, #expenses {font-size: 0.85em;}
 
 #expenseoverview { font-size: 100%;}
 

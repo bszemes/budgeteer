@@ -109,3 +109,8 @@ div#submitexpense {
 input[type="text"]:invalid {
 	color: red;
 }
+
+#Balance {
+	clear:both;
+	margin-top: 10px;
+}

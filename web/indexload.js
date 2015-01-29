@@ -11,13 +11,6 @@ var expenseByCategoryArray = [];
 var totalBudgets=0;	
 var budgetArray = [];
 
-function compare(a,b) {
-  if (a.category < b.category)
-     return -1;
-  if (a.category > b.category)
-    return 1;
-  return 0;
-}
 
 var findBudgetItembyCategory = function(budgetArray, cat) {
 	for (g=0; g<budgetArray.length; g++) {
@@ -66,7 +59,6 @@ var generateExpenseTables = function (expenseJSON) {
 			}
 	detailedExpenseTable += '<tr class="finalrow"><td colspan="3">Total Expenses</td><td class="number">' + totalExpenses + '</td></table>';
 	//create the expenses by category table - first sum the values in the same category, then create a table to display
-	//TODO: add budgets
 		for (i=0, n=0; i<expenseArray.length; i++, n++) {
 			expenseByCategoryArray[n] = expenseArray[i];
 			expenseByCategoryArray[n].value = Number(expenseByCategoryArray[n].value);
@@ -93,7 +85,7 @@ var generateExpenseTables = function (expenseJSON) {
 }
 
 var currentMonthlyBILoad = function()	{
-	currentMonthlyDataLoad("bi", populateBudgetArray);
+	generalDataLoadFromGivenTF("bi", currentMonthStart, currentMonthEnd, populateBudgetArray);
 	}
 
 var populateBudgetArray = function(budgetJSON) {
@@ -114,12 +106,12 @@ var populateCategoryDatalist = function(categoryJSON) {
 	
 //get a list of incomes, then display income table
 var currentMonthlyIncLoad = function () { 
-	currentMonthlyDataLoad("inc", generateIncomeTable);
+	generalDataLoadFromGivenTF("inc", currentMonthStart, currentMonthEnd, generateIncomeTable);
 	}
 
 //get the list of expenses, then display expense table
 var currentMonthlyExpLoad = function() {
-	currentMonthlyDataLoad("exp", generateExpenseTables);
+	generalDataLoadFromGivenTF("exp", currentMonthStart, currentMonthEnd, generateExpenseTables);
 	}
 	
 //update balance values in the table

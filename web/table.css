@@ -16,18 +16,22 @@ tr.finalrow {
 #incometable {
 	width: 250px;
 	float: left;
+	margin-bottom:10px;
 	}
 
 #expensetable {
 	width: 250px;
 	float: right;
+	margin-bottom:10px;
 	}
 
 
 #balancetable {
 	clear:both;
-	display: inline-block;
 	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
 	}
 
 

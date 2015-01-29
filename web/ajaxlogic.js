@@ -1,30 +1,30 @@
 //Contains the ajax logic for server calls
 
-//get a list of items for the current month
+//General function to load items from a time period	
+	
+var generalDataLoadFromGivenTF = function(itemType, startdate, enddate, callback) {
 
-var currentMonthlyDataLoad = function(itemType, callback) {
-
-var newExpMQ = { startdate: Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth(), 1)),
-						enddate: Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth()+1, 1)) 
-					}
-	console.log(newExpMQ);
+var newQwTF = { startdate: startdate,
+				enddate: enddate }
+	console.log(newQwTF);
 	var xmlhttp = new XMLHttpRequest();
 	var url
-	if ( itemType == "exp") {var url = "http://127.0.0.1/api/monthlyitemquery?item=expense"}
-	else if ( itemType== "inc") {var url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
-	else if ( itemType == "bi") {var url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
+	if ( itemType == "exp") {url = "http://127.0.0.1/api/monthlyitemquery?item=expense"}
+	else if ( itemType== "inc") {url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
+	else if ( itemType == "bi") {url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
 
 xmlhttp.onreadystatechange = function () { 
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        //document.getElementById("budebug2").innerHTML = xmlhttp.responseText;
-		callback(xmlhttp.responseText);
+        callback(xmlhttp.responseText);
     }
 }
 xmlhttp.open("POST", url, true);
 xmlhttp.setRequestHeader("Content-type", "application/json");
-xmlhttp.send(JSON.stringify(newExpMQ));
-	}
-
+xmlhttp.send(JSON.stringify(newQwTF));
+	}	
+	
+	
+	
 //getting a list of categories
 var getCategoryList = function(callback) {
 	var xmlhttp = new XMLHttpRequest();
@@ -99,28 +99,3 @@ xmlhttp.setRequestHeader("Content-type", "application/json");
 xmlhttp.send(JSON.stringify(budgetItem));
 return;
 	}	
-
-/*function newItemMQSubmit() {
-		
-
-	  var newExpMQ = { startdate: Date.prototype.toUTCString(Date.prototype.setFullYear(document.getElementById("mqitemyear").value, document.getElementById("mqitemmonth").value, 1)),
-						enddate: Date.prototype.toUTCString(Date.prototype.setFullYear(document.getElementById("mqitemyear").value, Number(document.getElementById("mqitemmonth").value)+1, 0)) 
-					}
-					
-	var xmlhttp = new XMLHttpRequest();
-	var url
-	if ( document.getElementById("itemtype").value == "exp") {var url = "http://127.0.0.1/api/monthlyitemquery?item=expense"}
-	else if ( document.getElementById("itemtype").value == "inc") {var url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
-	else if ( document.getElementById("itemtype").value == "bi") {var url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
-
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        console.log(xmlhttp.responseText);
-		document.getElementById("demo10").innerHTML = xmlhttp.responseText;
-    }
-}
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "application/json");
-document.getElementById("demo9").innerHTML = (JSON.stringify(newExpMQ));
-xmlhttp.send(JSON.stringify(newExpMQ));
-	}	*/
