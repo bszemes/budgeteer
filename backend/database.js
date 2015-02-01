@@ -1,8 +1,9 @@
 //database module with sequelize.js
-var Sequelize = require('C://Users//b//Desktop//personal//js//budgetsoftware//backend//node_modules//sequelize');
-var webserver = require ('./webserver.js');
-var config = require ('./config.json');
 
+
+var config = require ('./config.json');
+var Sequelize = require(config.sequelize);
+var webserver = require ('./webserver.js');
 
 // db connection
 exports.seqDbConn = function() {
@@ -96,8 +97,7 @@ Expense
 	Category.findOrCreate({ where: {category: newexp.category }}).spread(function(category, created) {
 	        newexp.setCategory(category).complete(function(err) { 
       newexp.getCategory().complete(function(err, target) {
-        console.log(target)
-		callback();
+        callback();
 				})
     })
  })
@@ -119,8 +119,7 @@ BudgetItem
 	  Category.findOrCreate({ where: {category: newbi.category }}).spread(function(category, created) {
 	        newbi.setCategory(category).complete(function(err) { 
       newbi.getCategory().complete(function(err, target) {
-        console.log(target)
-				})
+        })
     })
  })
   })
@@ -189,8 +188,7 @@ Income
  exports.monthlyBIDataQuery = function (newBIMQ, callback) {
 
   BudgetItem.findAll({where: Sequelize.and( {startdate: newBIMQ.startdate}, {enddate: newBIMQ.enddate})}).then(function(bires) { 
-  	  console.log(bires);
-	  callback(bires);
+		callback(bires);
   })
   }  
   

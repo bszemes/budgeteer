@@ -5,7 +5,7 @@ var database = require('./database.js')
 var static = require('node-static');
 
 
-exports.startWebserver = function (port1, host) {
+exports.startWebserver = function (port1) {
 
 
  
@@ -14,7 +14,7 @@ var file = new static.Server('.//..//web//', { cache: 0 });
 
 var data = {}
 var postHTML = 
-  '<html><head><title>Post Example</title></head>' +
+  '<html><head><title>returning</title></head>' +
   '<body>' +
   '<p>' +
   'Reponse: data received' 
@@ -38,7 +38,6 @@ var postHTML =
 		req.on('end', function() {
 			database.categoryQuery( function(results) { 
 				res.writeHead(200);
-				console.log(results);
 				res.end(JSON.stringify(results));
 				})
 			})
@@ -51,7 +50,6 @@ var postHTML =
 			});
 	
 		req.on('end', function () {
-			console.log(JSON.parse(body));
 			database.seqexpstore(JSON.parse(body), function () {
 				res.writeHead(200);
 				res.end(postHTML);
@@ -66,7 +64,6 @@ var postHTML =
 		});
 	
 		req.on('end', function () {
-			console.log(JSON.parse(body));
 			database.seqincstore(JSON.parse(body), function () {
 				res.writeHead(200);
 				res.end(postHTML);
@@ -82,11 +79,10 @@ var postHTML =
   });
 	
 	req.on('end', function () {
-	  console.log(JSON.parse(body));
-	  database.seqCatStore(JSON.parse(body));
-	  res.writeHead(200);
-	   res.end(postHTML);
-	    }) 
+		database.seqCatStore(JSON.parse(body));
+		res.writeHead(200);
+		res.end(postHTML);
+		}) 
 	
 	}
 	
@@ -98,10 +94,9 @@ var postHTML =
   });
 	
 	req.on('end', function () {
-	  console.log(JSON.parse(body));
-	  database.seqBIStore(JSON.parse(body));
-	  res.writeHead(200);
-	   res.end(postHTML);
+		database.seqBIStore(JSON.parse(body));
+		res.writeHead(200);
+		res.end(postHTML);
 	    }) 
 	
 	}
@@ -143,9 +138,9 @@ var postHTML =
 	}
 	})
 	
-server.listen(port1,host);
+server.listen(port1);
 
-console.log ("Connected to " + port1 + "   " + host);
+console.log ("Connected to " + port1);
 
 
 }

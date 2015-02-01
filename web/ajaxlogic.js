@@ -1,6 +1,8 @@
 //Contains the ajax logic for server calls
 
 //General function to load items from a time period	
+
+var baseUrl = window.location.hostname
 	
 var generalDataLoadFromGivenTF = function(itemType, startdate, enddate, callback) {
 
@@ -9,9 +11,9 @@ var newQwTF = { startdate: startdate,
 	console.log(newQwTF);
 	var xmlhttp = new XMLHttpRequest();
 	var url
-	if ( itemType == "exp") {url = "http://127.0.0.1/api/monthlyitemquery?item=expense"}
-	else if ( itemType== "inc") {url = "http://127.0.0.1/api/monthlyitemquery?item=income"}
-	else if ( itemType == "bi") {url = "http://127.0.0.1/api/monthlyitemquery?item=budgetitem"}
+	if ( itemType == "exp") {url = "http://" + baseUrl + "/api/monthlyitemquery?item=expense"}
+	else if ( itemType== "inc") {url = "http://" + baseUrl + "/api/monthlyitemquery?item=income"}
+	else if ( itemType == "bi") {url = "http://" + baseUrl + "/api/monthlyitemquery?item=budgetitem"}
 
 xmlhttp.onreadystatechange = function () { 
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -28,7 +30,7 @@ xmlhttp.send(JSON.stringify(newQwTF));
 //getting a list of categories
 var getCategoryList = function(callback) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = 'http://127.0.0.1/api/getcategories'
+	var url = "http://" + baseUrl + '/api/getcategories';
 	
 	xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -50,7 +52,7 @@ function newExpenseSubmit() {
 						};
 
 var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/createexpense";
+var url = "http://" + baseUrl + "/api/createexpense";
 xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		currentMonthlyExpLoad();
@@ -71,7 +73,7 @@ function newIncomeSubmit() {
 						};
 
 var xmlhttp = new XMLHttpRequest();
-var url = "http://127.0.0.1/api/createincome";
+var url = "http://" + baseUrl + "/api/createincome";
 xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		currentMonthlyIncLoad();
@@ -84,11 +86,11 @@ document.getElementById("incdebug1").innerHTML = JSON.stringify(newIncome)
 xmlhttp.send(JSON.stringify(newIncome));
 	}	
 	
-//function for submitting income	
+//function for submitting budget	
 function newBudgetItemSubmit(budgetItem) {
 
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://127.0.0.1/api/createbudgetitem";
+	var url = "http://" + baseUrl +"/api/createbudgetitem";
 	xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		console.log(xmlhttp.responseText);

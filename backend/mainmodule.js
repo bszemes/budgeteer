@@ -7,5 +7,5 @@ var config = require ('./config.json');
 
 database.seqDbConn();
 database.seqResetDb();
-var myWebServer = webserver.startWebserver(config.port1, config.host);
+var myWebServer = webserver.startWebserver(config.port1);
 

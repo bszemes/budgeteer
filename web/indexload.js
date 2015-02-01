@@ -21,16 +21,20 @@ var findBudgetItembyCategory = function(budgetArray, cat) {
 
 
 if (Number(d.getMonth()) < 9) {var monthformatted = "0" + (d.getMonth()+1).toString() } else monthformatted = (d.getMonth()+1).toString();
-var today = "" + (d.getFullYear()).toString() + "-" + monthformatted + "-" + (d.getDate()).toString()
+if (Number (d.getDate()) < 9) {var dateformatted = "0" + d.getDate().toString() } else dateformatted = (d.getDate().toString() );
+var today = "" + (d.getFullYear()).toString() + "-" + monthformatted + "-" + dateformatted;
 console.log(today);
 document.getElementById("expdate").value = today;
 document.getElementById("incdate").value = today;
+
+
+
 
 var generateIncomeTable = function (incomeJSON) {
 	totalIncome = 0;
 	incomeArray = JSON.parse(incomeJSON);
 	
-	var incomeTable = '<table id="incometable">' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
+	var incomeTable = '<table id="incometable" sortable>' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
 		for (i=0; i<incomeArray.length; i++) {
 			incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; 
 			totalIncome += Number(incomeArray[i].value);}
