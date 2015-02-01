@@ -1,41 +1,33 @@
 //Contains the js for page load (table construction, data retrieval for tables, etc.)
 
-
-
-
 var incomeArray = [];
 var totalIncome
 var balance =0;
 var totalExpenses
 var expenseByCategoryArray = [];
-var totalBudgets=0;	
+var totalBudgets;	
 var budgetArray = [];
 
-
 var findBudgetItembyCategory = function(budgetArray, cat) {
-	for (g=0; g<budgetArray.length; g++) {
+	for (var g=0; g<budgetArray.length; g++) {
 		if (budgetArray[g].category == cat) {return budgetArray[g]}
-	}
+		}
 	return null
-}
+	}
 
 
 if (Number(d.getMonth()) < 9) {var monthformatted = "0" + (d.getMonth()+1).toString() } else monthformatted = (d.getMonth()+1).toString();
 if (Number (d.getDate()) < 9) {var dateformatted = "0" + d.getDate().toString() } else dateformatted = (d.getDate().toString() );
 var today = "" + (d.getFullYear()).toString() + "-" + monthformatted + "-" + dateformatted;
-console.log(today);
 document.getElementById("expdate").value = today;
 document.getElementById("incdate").value = today;
-
-
-
 
 var generateIncomeTable = function (incomeJSON) {
 	totalIncome = 0;
 	incomeArray = JSON.parse(incomeJSON);
 	
 	var incomeTable = '<table id="incometable" sortable>' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
-		for (i=0; i<incomeArray.length; i++) {
+		for (var i=0; i<incomeArray.length; i++) {
 			incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; 
 			totalIncome += Number(incomeArray[i].value);}
 			incomeTable += '<tr class="finalrow"><td colspan="2">Total Income</td><td class="number">' + totalIncome + '</td></tr></table>';
@@ -44,9 +36,9 @@ var generateIncomeTable = function (incomeJSON) {
 	updateBalance();
 	};
 
-
 var generateExpenseTables = function (expenseJSON) {
 	totalExpenses = 0;
+	totalBudgets = 0;
 	var expenseArray = JSON.parse(expenseJSON);
 	expenseArray.sort(compare);
 	//create the detailed expenses table
@@ -54,7 +46,7 @@ var generateExpenseTables = function (expenseJSON) {
 																	+ '<th>Expense description</th>' 
 																	+ '<th>Expense Date</th>' 
 																	+ '<th>Expense Amount</th></tr>'
-		for (i=0; i<expenseArray.length; i++) {
+		for (var i=0; i<expenseArray.length; i++) {
 			detailedExpenseTable += '<tr> <td>' + expenseArray[i].category + '</td>'
 										+ '<td>' + expenseArray[i].description + '</td>'
 										+ '<td>'+ expenseArray[i].date.substr(0, 10) +'</td>'
@@ -63,19 +55,19 @@ var generateExpenseTables = function (expenseJSON) {
 			}
 	detailedExpenseTable += '<tr class="finalrow"><td colspan="3">Total Expenses</td><td class="number">' + totalExpenses + '</td></table>';
 	//create the expenses by category table - first sum the values in the same category, then create a table to display
-		for (i=0, n=0; i<expenseArray.length; i++, n++) {
+		for (var i=0, var n=0; i<expenseArray.length; i++, n++) {
 			expenseByCategoryArray[n] = expenseArray[i];
 			expenseByCategoryArray[n].value = Number(expenseByCategoryArray[n].value);
 			if (expenseArray[i+1] == undefined)  break;
 			while (expenseArray[i].category == expenseArray[i+1].category) {
 				i++;
 				expenseByCategoryArray[n].value += Number(expenseArray[i].value);
-			if (expenseArray[i+1] == undefined)  break;
+				if (expenseArray[i+1] == undefined)  break;
+				}
 			}
-		}
 		
 	var expenseTable = '<table id="expensetable">' + '<tr><th>Expense Category</th><th>Budget</th><th>Incurred Expenses </th></tr>'
-		for (i=0; i<expenseByCategoryArray.length; i++) {
+		for (var i=0; i<expenseByCategoryArray.length; i++) {
 			currentBudget = (findBudgetItembyCategory(budgetArray, expenseByCategoryArray[i].category) != null) ? findBudgetItembyCategory(budgetArray, expenseByCategoryArray[i].category).value : "0";
 			expenseTable += '<tr> <td>' + expenseByCategoryArray[i].category + '</td><td>' + currentBudget + '</td><td class="number">' + expenseByCategoryArray[i].value + '</td></tr>';
 			totalBudgets += Number(currentBudget);
@@ -93,9 +85,8 @@ var currentMonthlyBILoad = function()	{
 	}
 
 var populateBudgetArray = function(budgetJSON) {
-	console.log(budgetJSON);
 	budgetArray=JSON.parse(budgetJSON);
-}
+	}
 
 
 	
@@ -104,9 +95,7 @@ var populateCategoryDatalist = function(categoryJSON) {
 	var categoryArray = JSON.parse(categoryJSON);
 	for (i=0; i<categoryArray.length; i++) {categoryList += '<option value=' + categoryArray[i].category + '>'}
 	document.getElementById("categories").innerHTML = categoryList;
-	console.log(categoryList);
-	console.log(document.getElementById("categories"));
-}
+	}
 	
 //get a list of incomes, then display income table
 var currentMonthlyIncLoad = function () { 
@@ -131,7 +120,6 @@ var updateBalance = function() {
 						+ '</td><td>' + balance
 						+ '</tr>'
 
-
 	document.getElementById("Balance").innerHTML = balanceTable;
 	}
 
@@ -146,13 +134,13 @@ window.addEventListener("load", currentMonthlyExpLoad);
 window.addEventListener("load", updateCategoryDatalist);
 
 document.getElementById("expenseform").addEventListener("submit", function(e){
-e.preventDefault();
-newExpenseSubmit();
-})
+	e.preventDefault();
+	newExpenseSubmit();
+	})
 
 document.getElementById("incomeform").addEventListener("submit", function(e){
-e.preventDefault();
-newIncomeSubmit();
-})
+	e.preventDefault();
+	newIncomeSubmit();
+	})
 
 
