@@ -55,7 +55,7 @@ var generateExpenseTables = function (expenseJSON) {
 			}
 	detailedExpenseTable += '<tr class="finalrow"><td colspan="3">Total Expenses</td><td class="number">' + totalExpenses + '</td></table>';
 	//create the expenses by category table - first sum the values in the same category, then create a table to display
-		for (var i=0, var n=0; i<expenseArray.length; i++, n++) {
+		for (var i=0, n=0; i<expenseArray.length; i++, n++) {
 			expenseByCategoryArray[n] = expenseArray[i];
 			expenseByCategoryArray[n].value = Number(expenseByCategoryArray[n].value);
 			if (expenseArray[i+1] == undefined)  break;

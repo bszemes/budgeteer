@@ -84,12 +84,14 @@ function newIncomeSubmit() {
 	}	
 	
 //function for submitting budget	
-function newBudgetItemSubmit(budgetItem) {
+function newBudgetItemSubmit(budgetItem, rowId) {
 	var xmlhttp = new XMLHttpRequest();
 	var url = "http://" + baseUrl +"/api/createbudgetitem";
 	xmlhttp.onreadystatechange = function () { 
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			console.log(xmlhttp.responseText);
+			console.log(rowId);
+			feedbackToDisplay(rowId, 1);
 			}
 		}
 	xmlhttp.open("POST", url, true);

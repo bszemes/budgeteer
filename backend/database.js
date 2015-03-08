@@ -94,6 +94,49 @@ exports.seqexpstore = function(newexp, callback) {
  
 	}
 
+	
+	
+// epxerimental new BI storing/updating	
+	
+	exports.seqBIStore = function(newBudgetItem, callback) {
+	
+	BudgetItem.findOne({where: Sequelize.and( {startdate: newBudgetItem.startdate},
+												{enddate: newBudgetItem.enddate},
+												{category: newBudgetItem.category})})
+			.then(function(bires) { 
+			console.log(bires);
+				if (bires == null) {
+					BudgetItem
+						.create(newBudgetItem)
+						.complete(function(err, newbi) {
+							if (!!err) {console.log('The instance has not been saved:', err)}
+							else { console.log('We have a persisted instance now')}
+								Category.findOrCreate({ where: {category: newbi.category }}).spread(function(category, created) {
+								newbi.setCategory(category).complete(function(err) { 
+								newbi.getCategory().complete(function(err, target) {
+									callback();
+										})
+									})
+								})
+							})
+			
+					}
+					
+				if (bires != null) {BudgetItem.upsert(newBudgetItem)	
+					.complete(function(err, created) {
+						if (!!err) {console.log('The instance has not been saved:', err)}
+							else { console.log('updated')}
+						callback();
+						})
+					}
+	
+})
+}
+	
+	
+	
+	
+/*	
 //new BudgetItem item storing
 exports.seqBIStore = function(newBudgetItem, callback) {
 
@@ -111,7 +154,7 @@ exports.seqBIStore = function(newBudgetItem, callback) {
 				})
 			})
 	}
-
+*/
 
 
 

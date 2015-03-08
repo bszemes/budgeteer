@@ -27,7 +27,6 @@ var displayBudgetList = function() {
 		var currentelementvalue = '';
 		for (f=0; f<budgetList.length; f++) {
 			currentelement = "budget" + budgetList[f].CategoryId;
-			console.log('tak' + currentelement)
 			document.getElementById(currentelement).innerHTML = budgetList[f].value;
 			}
 		}	
@@ -53,17 +52,16 @@ var submitBudgetItems = function() {
 	var enddate = Date.prototype.toISOString(Date.prototype.setFullYear(d.getFullYear(), d.getMonth()+1, 1));
 	
 	while (document.getElementById("budget"+i) != null) {
-		console.log("tik"+i)
 		var tstStr = document.getElementById("budget"+i).innerHTML
-		console.log("tak"+i)
 		if ( tstStr.length > 0 ) {
-			console.log("tok")
+			var rowId = "budget"+i;
+			console.log(rowId);
 			var budgetItem = {
 						value: document.getElementById("budget"+i).innerHTML,
 						category: document.getElementById("category"+i).innerHTML,
 						startdate: startdate,
 						enddate: enddate}
-			newBudgetItemSubmit(budgetItem);
+			newBudgetItemSubmit(budgetItem, rowId);
 			
 			console.log(i);
 	
@@ -72,6 +70,12 @@ var submitBudgetItems = function() {
 		}
 }
 
+var feedbackToDisplay = function (rowId, status) {
+	if (status == 1) {
+		 document.getElementById(rowId).style.background="green";
+		 setTimeout(function(){document.getElementById(rowId).style.background="white";}, 300)
+	}
+}
 
 
 
