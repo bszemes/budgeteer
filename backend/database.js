@@ -2,7 +2,7 @@
 
 
 var config = require ('./config.json');
-var Sequelize = require(config.sequelize);
+var Sequelize = require('sequelize');
 var webserver = require ('./webserver.js');
 
 // db connection

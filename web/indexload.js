@@ -26,7 +26,7 @@ var generateIncomeTable = function (incomeJSON) {
 	totalIncome = 0;
 	incomeArray = JSON.parse(incomeJSON);
 	
-	var incomeTable = '<table id="incometable" sortable>' + '<tr><th>Income amount</th><th>Income description</th><th>Date of Income </th></tr>'
+	var incomeTable = '<table id="incometable" sortable>' + '<tr><th>Amount</th><th>Description</th><th>Date</th></tr>'
 		for (var i=0; i<incomeArray.length; i++) {
 			incomeTable += '<tr> <td class="number">' + incomeArray[i].value + '</td><td>' + incomeArray[i].description + '</td><td>' + incomeArray[i].date.substr(0, 10) + '</td></tr>'; 
 			totalIncome += Number(incomeArray[i].value);}
@@ -42,14 +42,14 @@ var generateExpenseTables = function (expenseJSON) {
 	var expenseArray = JSON.parse(expenseJSON);
 	expenseArray.sort(compare);
 	//create the detailed expenses table
-	var detailedExpenseTable= '<table id="detailedexpensetable">' + '<tr><th>Expense Category</th>' 
-																	+ '<th>Expense description</th>' 
-																	+ '<th>Expense Date</th>' 
-																	+ '<th>Expense Amount</th></tr>'
+	var detailedExpenseTable= '<table id="detailedexpensetable">' + '<tr><th>Category</th>' 
+																	+ '<th>Date</th>' 
+																	+ '<th>Description</th>' 
+																	+ '<th>Amount</th></tr>'
 		for (var i=0; i<expenseArray.length; i++) {
 			detailedExpenseTable += '<tr> <td>' + expenseArray[i].category + '</td>'
-										+ '<td>' + expenseArray[i].description + '</td>'
-										+ '<td>'+ expenseArray[i].date.substr(0, 10) +'</td>'
+												+ '<td>'+ expenseArray[i].date.substr(0, 10) +'</td>'
+												+ '<td>' + expenseArray[i].description + '</td>'
 						+ '<td class="number">' + expenseArray[i].value + '</td></tr>';
 			totalExpenses += Number(expenseArray[i].value);							
 			}

@@ -1,0 +1,103 @@
+#center{ 
+	}
+
+#left {
+	width: 318px;
+	border: 1px solid gray;
+	float: left;
+	margin-left: auto;
+	border-collapse: collapse;
+	padding: 4px;
+	background-color: #eee;
+	}
+
+
+#right {
+	width: 632px; 
+	border: 1px solid gray;
+	float: left;
+	border-collapse: collapse;
+	display: table-cell;
+	padding: 4px;
+	background-color: #ddd;
+	}
+
+	
+#funcnav {
+	clear: both;
+	padding-bottom: 20px;
+	}
+
+#expenseoverview {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	font-size: 100%;
+	}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	text-indent: 20px;
+	}	
+	
+#buttonbar {
+	text-align: center;
+	display: inline-block;
+	}	
+	
+input.button { border : 1px outset #8c5736;
+	height: 22px;
+	padding: 3px;
+	background: #ca9777;
+	border-radius: 5px;
+	box-shadow: 3px 3px 1px #888888;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+	margin-top: 2px;
+	width: 120px;
+	text-align: center;
+	}
+
+input.button:hover {
+	cursor: pointer;
+} 
+
+input.button:active {
+	cursor: pointer;
+	border : 1px inset #9d7802;
+	background: #643111;
+} 
+
+b { text-align: center;
+padding-left: 3px;
+}
+
+div#submitexpense, div#submitincome {
+	float: left;
+	border: 1px solid red;
+	padding: 2px;
+	border-radius: 5px;
+	width: 310px;
+	}
+
+div#submitexpense {
+	left: 80px;
+	top: 130px;
+	}
+ 
+ div#submitincome {
+	left: 250px;
+	top: 130px;
+	}
+ 
+	
+input[type="text"]:invalid {
+	color: red;
+}
+
+#Balance {
+	clear:both;
+	margin-top: 10px;
+}
